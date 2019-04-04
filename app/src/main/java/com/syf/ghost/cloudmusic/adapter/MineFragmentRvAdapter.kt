@@ -15,10 +15,12 @@ import kotlinx.android.synthetic.main.item_mine_horizontal_scroll_tabs.*
  * auth Shangyifei
  */
 const val HORIZONTAL_SCROLL_TAB_TYPE = 0
+const val MINE_MANAGER_TYPE = 1
 const val DEFAULT_TYPE = -1
 
 class MineFragmentRvAdapter : RecyclerView.Adapter<BaseViewHolder<out Any>>() {
-    private var horizontalScollTabModelList: MutableList<HorizontalScollTabModel> = ArrayList()
+    private val horizontalScollTabModelList: MutableList<HorizontalScollTabModel> = ArrayList()
+    private val mineManageList:MutableList<Any> = ArrayList()
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): BaseViewHolder<out Any> {
         return when (p1) {
             HORIZONTAL_SCROLL_TAB_TYPE -> HorizontalScrollTabViewHodel(LayoutInflater.from(p0.context).inflate(R.layout.item_mine_horizontal_scroll_tabs,p0,false))
@@ -27,14 +29,14 @@ class MineFragmentRvAdapter : RecyclerView.Adapter<BaseViewHolder<out Any>>() {
     }
 
     override fun getItemCount(): Int {
-        return 1
+        return 2
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == HORIZONTAL_SCROLL_TAB_TYPE) {
-            HORIZONTAL_SCROLL_TAB_TYPE
-        } else {
-            DEFAULT_TYPE
+        return when (position) {
+            HORIZONTAL_SCROLL_TAB_TYPE -> HORIZONTAL_SCROLL_TAB_TYPE
+            MINE_MANAGER_TYPE -> MINE_MANAGER_TYPE
+            else -> DEFAULT_TYPE
         }
     }
 

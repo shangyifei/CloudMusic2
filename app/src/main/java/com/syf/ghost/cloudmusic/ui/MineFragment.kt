@@ -1,10 +1,15 @@
 package com.syf.ghost.cloudmusic.ui
 
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import com.syf.ghost.cloudmusic.R
-import com.syf.ghost.cloudmusic.adapter.MineFragmentRvAdapter
+import com.syf.ghost.cloudmusic.adapter.HorizontalScrollTabRvAdapter
+import com.syf.ghost.cloudmusic.adapter.MineManagerAdapter
 import com.syf.ghost.cloudmusic.base.AbstractBaseFragment
+import com.syf.ghost.cloudmusic.base.BaseViewHolder
+import com.syf.ghost.cloudmusic.base.MultiTypeAdapter
 import com.syf.ghost.cloudmusic.model.HorizontalScollTabModel
+import com.syf.ghost.cloudmusic.model.MineManagerModel
 import kotlinx.android.synthetic.main.fragment_find.*
 
 
@@ -12,28 +17,30 @@ import kotlinx.android.synthetic.main.fragment_find.*
  * Created by Android on 2019/4/3.
  * auth Shangyifei
  */
-class MineFragment : AbstractBaseFragment(){
+class MineFragment : AbstractBaseFragment() {
     val title = "我的"
-    val adapter  by lazy {
-        MineFragmentRvAdapter()
+    val adapter by lazy {
+        MultiTypeAdapter()
     }
+
     override fun getLayoutId(): Int {
-      return R.layout.fragment_mine
+        return R.layout.fragment_mine
     }
 
     override fun initView() {
         rv_mine.layoutManager = LinearLayoutManager(context)
         rv_mine.adapter = adapter
-
-        adapter.setHorizontalScrollTabView(
-            listOf(HorizontalScollTabModel("你好","私人FM"),
-                HorizontalScollTabModel("你好","最新电音"),
-                HorizontalScollTabModel("你好","最新电音"),
-                HorizontalScollTabModel("你好","最新电音"),
-                HorizontalScollTabModel("你好","最新电音"),
-                HorizontalScollTabModel("你好","最新电音"),
-                HorizontalScollTabModel("你好","最新电音"),
-                HorizontalScollTabModel("你好","最新电音")))
+        val adapters: List<RecyclerView.Adapter<out BaseViewHolder<out Any>>> = listOf(
+            HorizontalScrollTabRvAdapter(mutableListOf(HorizontalScollTabModel("a", "私人FM"))),
+            MineManagerAdapter(
+                mutableListOf(
+                    MineManagerModel("", "本地音乐", "2"),
+                    MineManagerModel("", "最近播放", "4"),
+                    MineManagerModel("", "下载管理", "4")
+                )
+            )
+        )
+        adapter.setAdapter(adapters)
     }
 
     override fun getTitle(): CharSequence {

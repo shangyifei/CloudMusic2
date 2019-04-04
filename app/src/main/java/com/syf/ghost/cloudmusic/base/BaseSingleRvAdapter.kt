@@ -7,7 +7,7 @@ import android.view.ViewGroup
  * Created by Android on 2019/4/3.
  * auth Shangyifei
  */
-abstract class BaseSingleRvAdapter<D,T : BaseViewHolder<D>?>(list: MutableList<D>) : RecyclerView.Adapter<T>(){
+abstract class BaseSingleRvAdapter<D, T : BaseViewHolder<D>?>(list: MutableList<D>) : RecyclerView.Adapter<T>(){
     private val data : MutableList<D> = list
    abstract override fun onCreateViewHolder(p0: ViewGroup, p1: Int): T
 

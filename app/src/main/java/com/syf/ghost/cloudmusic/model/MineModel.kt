@@ -5,3 +5,5 @@ package com.syf.ghost.cloudmusic.model
  * auth Shangyifei
  */
 data class HorizontalScollTabModel(val icon:String,val text:String)
+
+data class MineManagerModel(val icon: String,val text: String,val count: String)
