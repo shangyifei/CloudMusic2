@@ -1,5 +1,6 @@
 package com.syf.ghost.cloudmusic.ui
 
+import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.syf.ghost.cloudmusic.R
@@ -34,13 +35,17 @@ class MineFragment : AbstractBaseFragment() {
             HorizontalScrollTabRvAdapter(mutableListOf(HorizontalScollTabModel("a", "私人FM"))),
             MineManagerAdapter(
                 mutableListOf(
-                    MineManagerModel("", "本地音乐", "2"),
+                    MineManagerModel("", "本地音乐", "2") {goLocalMusicActivity()},
                     MineManagerModel("", "最近播放", "4"),
                     MineManagerModel("", "下载管理", "4")
                 )
             )
         )
         adapter.setAdapter(adapters)
+    }
+
+    fun goLocalMusicActivity() {
+        startActivity(Intent(context, LocalMusicActivity::class.java))
     }
 
     override fun getTitle(): CharSequence {

@@ -6,4 +6,4 @@ package com.syf.ghost.cloudmusic.model
  */
 data class HorizontalScollTabModel(val icon:String,val text:String)
 
-data class MineManagerModel(val icon: String,val text: String,val count: String)
+data class MineManagerModel(val icon: String, val text: String, val count: String, val event:()->Unit = {})

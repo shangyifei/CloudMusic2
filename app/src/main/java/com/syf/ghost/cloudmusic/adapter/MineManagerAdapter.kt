@@ -24,6 +24,9 @@ class MineManagerAdapter(data:MutableList<MineManagerModel>) : BaseSingleRvAdapt
             super.bindView(model)
             tv_manager_text.text = model.text
             tv_manager_hint_counter.text = "(${model.count})"
+            itemView.setOnClickListener {
+                model.event()
+            }
         }
     }
 

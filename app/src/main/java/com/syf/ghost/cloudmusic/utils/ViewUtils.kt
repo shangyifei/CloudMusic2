@@ -12,3 +12,6 @@ import android.view.ViewGroup
 fun inflate(parent:ViewGroup,resId:Int):View{
     return LayoutInflater.from(parent.context).inflate(resId,parent,false)
 }
+fun inflateAttach(parent:ViewGroup,resId:Int):View{
+    return LayoutInflater.from(parent.context).inflate(resId,parent,true)
+}
